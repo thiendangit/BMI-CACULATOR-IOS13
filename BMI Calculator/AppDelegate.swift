@@ -1,10 +1,10 @@
 //
-//  AppDelegate.swift
+//  ResultController.swift
 //  BMI Calculator
 //
-//  Created by Angela Yu on 21/08/2019.
-//  Copyright © 2019 Angela Yu. All rights reserved.
-//
+//  Created by Thiện Đăng on 9/10/20.
+//  Copyright © 2020 Thiện Đăng. All rights reserved.
+
 
 import UIKit
 

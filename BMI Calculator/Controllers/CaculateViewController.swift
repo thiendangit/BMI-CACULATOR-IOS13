@@ -8,12 +8,14 @@
 
 import UIKit
 
-class caculateViewController: UIViewController {
+class CaculateViewController: UIViewController {
     
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightSlider: UISlider!
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var weight: UILabel!
+    
+    var BmiValue = "0.0"
     
     @IBAction func heightSliderChanged(_ sender: UISlider) {
         heightLabel.text = "\(String(format: "%.2f",sender.value)) m"
@@ -27,15 +29,22 @@ class caculateViewController: UIViewController {
         let weight = (weightSlider.value)
         let height = (heightSlider.value)
         let BMI = Float(weight/(pow(height,2)))
-        print(BMI)
+        BmiValue = String(format: "%.1f", BMI)
+//        var resultScreen = ResultController()
+        self.performSegue(withIdentifier: "gotoResult", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "gotoResult"){
+            let data = segue.destination as! ResultController
+            data.BmiValue = BmiValue
+        }
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        var resultScreen = ResultController()
-        
     }
 }
 
