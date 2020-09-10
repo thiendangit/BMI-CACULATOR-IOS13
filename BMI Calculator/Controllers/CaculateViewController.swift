@@ -14,8 +14,7 @@ class CaculateViewController: UIViewController {
     @IBOutlet weak var weightSlider: UISlider!
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var weight: UILabel!
-    
-    var BmiValue = "0.0"
+    var caculateBrain = CaculateBrain()
     
     @IBAction func heightSliderChanged(_ sender: UISlider) {
         heightLabel.text = "\(String(format: "%.2f",sender.value)) m"
@@ -28,8 +27,7 @@ class CaculateViewController: UIViewController {
     @IBAction func buttonCalculate(_ sender: UIButton) {
         let weight = (weightSlider.value)
         let height = (heightSlider.value)
-        let BMI = Float(weight/(pow(height,2)))
-        BmiValue = String(format: "%.1f", BMI)
+        caculateBrain.caculateBmi(height: height, weight: weight)
 //        var resultScreen = ResultController()
         self.performSegue(withIdentifier: "gotoResult", sender: self)
     }
@@ -37,7 +35,7 @@ class CaculateViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "gotoResult"){
             let data = segue.destination as! ResultController
-            data.BmiValue = BmiValue
+            data.Bmi = caculateBrain.getBmiValue()
         }
     }
     

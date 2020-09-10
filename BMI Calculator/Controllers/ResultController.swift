@@ -10,17 +10,20 @@ import UIKit
 
 class ResultController: UIViewController {
     
-    var BmiValue = "0.0"
+    var Bmi : BMI?
     
     @IBOutlet weak var resultLabel: UILabel!
     
+    @IBOutlet weak var adviceLabel: UILabel!
     @IBAction func recaculate(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         //some code here
-        resultLabel.text = String(BmiValue)
+        resultLabel.text = String(format: "%.2f", Bmi?.value ?? "0.0")
+        adviceLabel.text = String(Bmi!.advice)
+        adviceLabel.textColor = Bmi!.color
     }
     
 }
